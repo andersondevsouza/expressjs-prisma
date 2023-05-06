@@ -12,8 +12,10 @@ generator client {
 }
 
 model Customer {
-  id        Int   @id @default(autoincrement())
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   name      String
   email     String
 } 
+
+
