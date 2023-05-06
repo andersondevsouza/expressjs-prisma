@@ -21,7 +21,6 @@ app.get("/customers", async (req, res) => {
 app.post("/customers", async (req, res) => {
   const customer = await prisma.customer.create({
     data: {
-      completed: false,
       createdAt: new Date(),
       name: req.body.name ?? "Empty todo",
       email: req.body.email
@@ -33,26 +32,26 @@ app.post("/customers", async (req, res) => {
 
 app.get("/todos/:id", async (req, res) => {
   const id = req.params.id;
-  const todo = await prisma.todo.findUnique({
+  const customer = await prisma.customer.findUnique({
     where: { id },
   });
 
-  return res.json(todo);
+  return res.json(customer);
 });
 
-app.put("/todos/:id", async (req, res) => {
+app.put("/customers/:id", async (req, res) => {
   const id = req.params.id;
-  const todo = await prisma.todo.update({
+  const customer = await prisma.customer.update({
     where: { id },
     data: req.body,
   });
 
-  return res.json(todo);
+  return res.json(customer);
 });
 
-app.delete("/todos/:id", async (req, res) => {
+app.delete("/customers/:id", async (req, res) => {
   const id = req.params.id;
-  await prisma.todo.delete({
+  await prisma.customer.delete({
     where: { id },
   });
 
