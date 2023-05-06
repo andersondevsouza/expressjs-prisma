@@ -10,24 +10,25 @@ app.use(express.json());
 app.use(express.raw({ type: "application/vnd.custom-type" }));
 app.use(express.text({ type: "text/html" }));
 
-app.get("/todos", async (req, res) => {
-  const todos = await prisma.todo.findMany({
+app.get("/customers", async (req, res) => {
+  const customers = await prisma.customer.findMany({
     orderBy: { createdAt: "desc" },
   });
 
-  res.json(todos);
+  res.json(customers);
 });
 
-app.post("/todos", async (req, res) => {
-  const todo = await prisma.todo.create({
+app.post("/customers", async (req, res) => {
+  const customer = await prisma.customer.create({
     data: {
       completed: false,
       createdAt: new Date(),
-      text: req.body.text ?? "Empty todo",
+      name: req.body.name ?? "Empty todo",
+      email: req.body.email
     },
   });
 
-  return res.json(todo);
+  return res.json(customer);
 });
 
 app.get("/todos/:id", async (req, res) => {
