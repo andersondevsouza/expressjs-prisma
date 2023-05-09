@@ -11,11 +11,53 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Customer {
+model CustomerOld {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   name      String
   email     String
 } 
+
+model Customer{
+  id        Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  email     String
+}
+
+model User{
+  id         Int     @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  name       String
+  email      String
+  senha      String
+  customerId Int
+}
+
+model Services {
+  id           Int     @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  name         String
+  price        Float
+  status       String //"Active" | "Inactive"
+  durationTime Int
+}
+
+model Diary {
+  id         Int     @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  customerId Int
+  userId     Int
+  dateHour   DateTime
+}
+
+model DiaryService {
+  id         Int     @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  diaryId    Int
+  serviceId  Int
+  paid       Boolean @default(false) //false | true
+  done       Boolean @default(false) //false | true
+}
 
 

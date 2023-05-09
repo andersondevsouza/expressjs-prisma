@@ -18,11 +18,11 @@ app.get("/customers", async (req, res) => {
   res.json(customers);
 });
 
-app.post("/customers", async (req, res) => {
+/*app.post("/customers", async (req, res) => {
   const customer = await prisma.customer.create({
     data: {
       createdAt: new Date(),
-      name: req.body.name ?? "Empty todo",
+      name: req.body.name ?? "Empty customer",
       email: req.body.email
     },
   });
@@ -30,7 +30,7 @@ app.post("/customers", async (req, res) => {
   return res.json(customer);
 });
 
-app.get("/todos/:id", async (req, res) => {
+app.get("/customers/:id", async (req, res) => {
   const id = req.params.id;
   const customer = await prisma.customer.findUnique({
     where: { id },
@@ -56,7 +56,7 @@ app.delete("/customers/:id", async (req, res) => {
   });
 
   return res.send({ status: "ok" });
-});
+});*/
 
 app.get("/", async (req, res) => {
   res.send(
