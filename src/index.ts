@@ -26,6 +26,15 @@ app.post("/customers", async (req, res) => {
   return res.json(customer);
 });
 
+app.delete("/customers/:id", async (req, res) => {
+  const id = req.body.id;
+  await prisma.customer.delete({
+    where: { id },
+  });
+
+  return res.send({ status: "customer deleted" });
+});
+
 /*app.post("/customers", async (req, res) => {
   const customer = await prisma.customer.create({
     data: {
