@@ -21,8 +21,10 @@ app.get("/customers", async (req, res) => {
 app.post("/customers", async (req, res) => {
   const customer = await prisma.customer.create({
     data: req.body,
-  })
-})
+  });
+
+  return res.json(customer);
+});
 
 /*app.post("/customers", async (req, res) => {
   const customer = await prisma.customer.create({
